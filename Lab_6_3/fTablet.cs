@@ -13,39 +13,39 @@ namespace Lab_6_3
     public partial class fTablet : Form
     {
 
-        public fTablet(Tablet t)
+        public fTablet(Electronicdevice t)
         {
-            TheTablet = t;
+            TheElectronicdevice = t;
             InitializeComponent();
         }
 
-        public Tablet TheTablet;
+        public Electronicdevice TheElectronicdevice;
 
         private void fTablet_Load_1(object sender, EventArgs e)
         {
-            if (TheTablet != null)
+            if (TheElectronicdevice != null)
             {
-                tbBrand.Text = TheTablet.brand;
-                tbPrice.Text = TheTablet.price.ToString();
-                tbWeight.Text = TheTablet.weight.ToString();
-                tbColor.Text = TheTablet.color;
-                tbScreendiagonal.Text = TheTablet.screendiagonal.ToString("0.0");
-                tbCPUfrequency.Text = TheTablet.CPUfrequency.ToString("0.0");
-                chbisthereasimcard.Checked = TheTablet.isthereasimcard;
-                chbisthereamemorycardslot.Checked = TheTablet.isthereamemorycardslot;
+                tbBrand.Text = TheElectronicdevice.brand;
+                tbPrice.Text = TheElectronicdevice.price.ToString();
+                tbWeight.Text = TheElectronicdevice.weight.ToString();
+                tbColor.Text = TheElectronicdevice.color;
+                tbScreendiagonal.Text = TheElectronicdevice.screendiagonal.ToString("0.0");
+                tbCPUfrequency.Text = TheElectronicdevice.CPUfrequency.ToString("0.0");
+                chbisthereasimcard.Checked = TheElectronicdevice.isthereasimcard;
+                chbisthereamemorycardslot.Checked = TheElectronicdevice.isthereamemorycardslot;
             }
         }
 
         private void btnOk_Click_1(object sender, EventArgs e)
         {
-            TheTablet.brand = tbBrand.Text.Trim();
-            TheTablet.price = int.Parse(tbPrice.Text.Trim());
-            TheTablet.weight = int.Parse(tbWeight.Text.Trim());
-            TheTablet.color = tbColor.Text.Trim();
-            TheTablet.screendiagonal = double.Parse(tbScreendiagonal.Text.Trim());
-            TheTablet.CPUfrequency = double.Parse(tbCPUfrequency.Text.Trim());
-            TheTablet.isthereasimcard = chbisthereasimcard.Checked;
-            TheTablet.isthereamemorycardslot = chbisthereamemorycardslot.Checked;
+            TheElectronicdevice.brand = tbBrand.Text.Trim();
+            TheElectronicdevice.price = int.Parse(tbPrice.Text.Trim());
+            TheElectronicdevice.weight = int.Parse(tbWeight.Text.Trim());
+            TheElectronicdevice.color = tbColor.Text.Trim();
+            TheElectronicdevice.screendiagonal = double.Parse(tbScreendiagonal.Text.Trim());
+            TheElectronicdevice.CPUfrequency = double.Parse(tbCPUfrequency.Text.Trim());
+            TheElectronicdevice.isthereasimcard = chbisthereasimcard.Checked;
+            TheElectronicdevice.isthereamemorycardslot = chbisthereamemorycardslot.Checked;
 
             DialogResult = DialogResult.OK;
         }

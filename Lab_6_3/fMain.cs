@@ -66,39 +66,39 @@ namespace Lab_6_3
             gvTablets.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "DiscountedPrice";
+            column.DataPropertyName = "discountedPrice";
             column.Name = "Ціна зі знижкою 30%, грн";
             gvTablets.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "DiscountWithRegularCustomerCard";
+            column.DataPropertyName = "discountwitharegularcustomercard";
             column.Name = "Ціна зі знижкою 30% та знижкою постійного клієнта, грн";
             gvTablets.Columns.Add(column);
 
 
-            bindSrcTablets.Add(new Tablet("Acer", 20000, 540, "Black", 9.8, 2.1, true, true, 14000, 13300));
+            bindSrcTablets.Add(new Tablet("Acer", 20000, 540, "Black", 9.8, 2.1, true, true, 20000, 20000));
             EventArgs args = new EventArgs(); OnResize(args);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Tablet tablet = new Tablet();
+            Electronicdevice electronicdevice = new Tablet();
 
-            fTablet ft = new fTablet(tablet);
+            fTablet ft = new fTablet(electronicdevice);
             if (ft.ShowDialog() == DialogResult.OK)
             {
-                bindSrcTablets.Add(tablet);
+                bindSrcTablets.Add(electronicdevice);
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            Tablet tablet = (Tablet)bindSrcTablets.List[bindSrcTablets.Position];
+            Electronicdevice electronicdevice = (Electronicdevice)bindSrcTablets.List[bindSrcTablets.Position];
 
-            fTablet ft = new fTablet(tablet);
+            fTablet ft = new fTablet(electronicdevice);
             if (ft.ShowDialog() ==DialogResult.OK) 
             {
-                bindSrcTablets.List[bindSrcTablets.Position] = tablet;
+                bindSrcTablets.List[bindSrcTablets.Position] = electronicdevice;
             }
         }
 
@@ -146,13 +146,13 @@ namespace Lab_6_3
                 sw = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8);
                 try
                 {
-                    foreach (Tablet tablet in bindSrcTablets.List)
+                    foreach (Electronicdevice electronicdevice in bindSrcTablets.List)
                     {
-                        sw.Write(tablet.brand + "\t" + tablet.price + "\t" +
-                            tablet.weight + "\t" + tablet.color + "\t" +
-                            tablet.screendiagonal + "\t" + tablet.CPUfrequency +
-                            "\t" + tablet.isthereasimcard + "\t" + tablet.isthereamemorycardslot + "\t" + tablet.DiscountedPrice + "\t" + 
-                            tablet.DiscountWithRegularCustomerCard + "\t\n");
+                        sw.Write(electronicdevice.brand + "\t" + electronicdevice.price + "\t" +
+                            electronicdevice.weight + "\t" + electronicdevice.color + "\t" +
+                            electronicdevice.screendiagonal + "\t" + electronicdevice.CPUfrequency +
+                            "\t" + electronicdevice.isthereasimcard + "\t" + electronicdevice.isthereamemorycardslot + "\t" + electronicdevice.discountedPrice + "\t" + 
+                            electronicdevice.discountwitharegularcustomercard + "\t\n");
                     }
                 }
                 catch (Exception ex) 
@@ -178,18 +178,18 @@ namespace Lab_6_3
                 bw = new BinaryWriter(saveFileDialog.OpenFile());
                 try
                 {
-                    foreach (Tablet tablet in bindSrcTablets.List)
+                    foreach (Electronicdevice electronicdevice in bindSrcTablets.List)
                     {
-                        bw.Write(tablet.brand);
-                        bw.Write(tablet.price);
-                        bw.Write(tablet.weight);
-                        bw.Write(tablet.color);
-                        bw.Write(tablet.screendiagonal);
-                        bw.Write(tablet.CPUfrequency);
-                        bw.Write(tablet.isthereasimcard);
-                        bw.Write(tablet.isthereamemorycardslot);
-                        bw.Write(tablet.DiscountedPrice);
-                        bw.Write(tablet.DiscountWithRegularCustomerCard);
+                        bw.Write(electronicdevice.brand);
+                        bw.Write(electronicdevice.price);
+                        bw.Write(electronicdevice.weight);
+                        bw.Write(electronicdevice.color);
+                        bw.Write(electronicdevice.screendiagonal);
+                        bw.Write(electronicdevice.CPUfrequency);
+                        bw.Write(electronicdevice.isthereasimcard);
+                        bw.Write(electronicdevice.isthereamemorycardslot);
+                        bw.Write(electronicdevice.discountedPrice);
+                        bw.Write(electronicdevice.discountwitharegularcustomercard);
                     }
                 }
                 catch (Exception ex)
@@ -221,10 +221,10 @@ namespace Lab_6_3
                     while ((s = sr.ReadLine()) != null)
                     {
                         string[] split = s.Split('\t');
-                        Tablet tablet = new Tablet(split[0], int.Parse(split[1]), int.Parse(split[2]),
+                        Electronicdevice electronicdevice = new Tablet(split[0], int.Parse(split[1]), int.Parse(split[2]),
                             split[3], double.Parse(split[4]), double.Parse(split[5]), bool.Parse(split[6]),
                             bool.Parse(split[7]), double.Parse(split[8]), double.Parse(split[9]));
-                        bindSrcTablets.Add(tablet);
+                        bindSrcTablets.Add(electronicdevice);
                     }
                 }
                 catch (Exception ex) 
@@ -252,36 +252,36 @@ namespace Lab_6_3
                 br = new BinaryReader(openFileDialog.OpenFile());
                 try
                 {
-                    Tablet tablet; while (br.BaseStream.Position < br.BaseStream.Length)
+                    Electronicdevice electronicdevice; while (br.BaseStream.Position < br.BaseStream.Length)
                     {
-                        tablet = new Tablet();
+                        electronicdevice = new Tablet();
                         for (int i = 1; i<=10; i++)
                         {
                             switch (i)
                             {
                                 case 1:
-                                    tablet.brand = br.ReadString(); break;
+                                    electronicdevice.brand = br.ReadString(); break;
                                 case 2:
-                                    tablet.price = br.ReadInt32(); break;
+                                    electronicdevice.price = br.ReadInt32(); break;
                                 case 3:
-                                    tablet.weight = br.ReadInt32(); break;
+                                    electronicdevice.weight = br.ReadInt32(); break;
                                 case 4:
-                                    tablet.color = br.ReadString(); break;
+                                    electronicdevice.color = br.ReadString(); break;
                                 case 5: 
-                                    tablet.screendiagonal = br.ReadDouble(); break;
+                                    electronicdevice.screendiagonal = br.ReadDouble(); break;
                                 case 6:
-                                    tablet.CPUfrequency = br.ReadDouble(); break;
+                                    electronicdevice.CPUfrequency = br.ReadDouble(); break;
                                 case 7:
-                                    tablet.isthereasimcard = br.ReadBoolean(); break;
+                                    electronicdevice.isthereasimcard = br.ReadBoolean(); break;
                                 case 8:
-                                    tablet.isthereamemorycardslot = br.ReadBoolean(); break;
+                                    electronicdevice.isthereamemorycardslot = br.ReadBoolean(); break;
                                 case 9:
-                                    tablet.DiscountedPrice = br.ReadDouble(); break;
+                                    electronicdevice.discountedPrice = br.ReadDouble(); break;
                                 case 10:
-                                    tablet.DiscountWithRegularCustomerCard = br.ReadDouble(); break;
+                                    electronicdevice.discountwitharegularcustomercard = br.ReadDouble(); break;
                             }
                         }
-                        bindSrcTablets.Add(tablet);
+                        bindSrcTablets.Add(electronicdevice);
                     }
                 }
                 catch (Exception ex)
